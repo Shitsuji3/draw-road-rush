@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Draw Road Rush</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<!-- The Playables SDK must load before any game code. -->
+<script src="https://www.youtube.com/game_api/v1"></script>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="hud">
+  <button id="btn-levels" class="icon-btn" aria-label="Levels">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>
+  </button>
+  <div id="hud-center">
+    <div id="level-label">LEVEL 1</div>
+    <div id="hud-sections" hidden></div>
+    <div id="ink" aria-label="Ink">
+      <svg class="pencil" viewBox="0 0 24 24"><path d="M3 21l1.2-4.6L16.5 4.1a2 2 0 0 1 2.8 0l.6.6a2 2 0 0 1 0 2.8L7.6 19.8z"/></svg>
+      <div class="bar"><div id="ink-fill"></div></div>
+    </div>
+    <div id="hud-stars"><span>★</span><span>★</span><span>★</span></div>
+  </div>
+  <div class="hud-right">
+    <button id="btn-hint" class="icon-btn ad" aria-label="Hint">
+      <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2zM9 20h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
+      <em class="ad-badge"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z"/></svg></em>
+    </button>
+    <button id="btn-retry" class="icon-btn" aria-label="Retry">
+      <svg viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<div id="ov-clear" class="overlay" hidden>
+  <div class="card">
+    <div class="title" data-t="clear">CLEAR!</div>
+    <div id="clear-stars" class="big-stars"><span>★</span><span>★</span><span>★</span></div>
+    <button id="btn-next" class="btn primary"><span data-t="next">NEXT</span> ▶</button>
+    <button id="btn-clear-retry" class="btn ghost" data-t="retry">RETRY</button>
+  </div>
+</div>
+
+<div id="ov-fail" class="overlay" hidden>
+  <div class="card">
+    <div id="fail-title" class="title">OUCH!</div>
+    <button id="btn-fail-retry" class="btn primary" data-t="tryAgain">TRY AGAIN</button>
+    <div class="row">
+      <button id="btn-fail-hint" class="btn secondary"><em class="ad-badge"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z"/></svg></em><span data-t="hint">HINT</span></button>
+      <button id="btn-fail-ink" class="btn secondary"><em class="ad-badge"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z"/></svg></em><span data-t="ink">INK +50%</span></button>
+    </div>
+  </div>
+</div>
+
+<div id="ov-levels" class="overlay" hidden>
+  <div class="card levels">
+    <div class="title small" data-t="levels">LEVELS</div>
+    <div class="legend"><span class="swatch"></span><span data-t="long">LONG STAGE</span></div>
+    <div id="level-grid"></div>
+    <button id="btn-levels-close" class="btn ghost">▼</button>
+  </div>
+</div>
+
+<!-- Only used outside YouTube, to stand in for a rewarded ad. -->
+<div id="fake-ad" class="overlay" hidden><div class="card"><span>AD</span></div></div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
